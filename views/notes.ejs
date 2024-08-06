@@ -1,0 +1,41 @@
+<%- include("partials/header.ejs") %>
+<main>
+    <div class="box">
+        <% if(locals.books){
+            books.forEach(book =>{ %>
+                <div class="preview-box">
+                    <div class="cover-image">
+                        <img src="<%= book.cover_page_reff %>" alt="The Intelligent Investor" style="width:40%">
+                    </div>
+                    <div class="rating">
+                        <h2 style="color: blue;"><!-- ☆ --><%= book.rating %>★</h2>
+                    </div>
+                    <div class="title">
+                        <h2><%= book.title %></h2>
+                    </div>
+                    <div class="mini-review">
+                        <p><%= book.mini_review %></p>
+                        <p>ISBN: <%= book.isbn_id %></p>
+                    </div>
+                </div>
+                <div class="notes">
+                    <h2>NOTES:</h2>
+                    <ul>
+                        <% if(book.notes != null){
+                            book.notes.forEach((note) =>{ %>
+                                <li><%= note %></li>
+                            <% });
+                        } else{ %>
+                            <p>Notes has not been added yet!</p>
+                        <% } %>
+                    </ul>
+                    <form id="newNotes-form" action="/newNotes" method="post">
+                        <input type="text" name="isbn_id" value="<%= book.isbn_id %>" hidden>
+                        <input id="newNotes-form-submit" type="submit" value="Add new notes">
+                    </form>
+                </div>
+            <% })
+        } %>
+    </div>
+</main>
+<%- include("partials/footer.ejs") %>

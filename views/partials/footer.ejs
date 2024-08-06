@@ -1,0 +1,27 @@
+<script>
+    function filterHandler(){
+        document.getElementById("filter-form").removeAttribute("hidden");
+        document.getElementById("filter-btn").setAttribute("hidden", true);
+        document.getElementsByClassName("sort")[0].setAttribute("hidden", true);
+    }
+
+    function sortHandler(){
+        document.getElementById("sort-form").removeAttribute("hidden");
+        document.getElementById("sort-btn").setAttribute("hidden", true);
+        document.getElementsByClassName("filter")[0].setAttribute("hidden", true);
+    }
+
+    function addNote(){
+        const newElement = document.createElement("input");
+        newElement.name = "notes";
+        newElement.autofocus = true;
+
+        const currentElement = document.getElementById("buttons");
+        document.getElementById("update-notes-form").insertBefore(newElement, currentElement);
+    }
+</script>
+<footer>
+    <p>Copyright © SD's Works, 2024</p>
+   </footer>
+</body>
+</html>

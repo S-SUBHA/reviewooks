@@ -1,0 +1,23 @@
+<%- include("partials/header.ejs") %>
+<main>
+    <div class="box">
+        <div class="notes">
+            <h2><%= body.title %> - by <%= body.author %></h2>
+            <h3>ISBN: <%= body.isbn_id %></h3>
+            <h3>NOTES:</h3>
+
+            <form id="update-notes-form" action="/updateNotes/<%= body.isbn_id %>" method="post">
+                <% if(body.notes != null){
+                    body.notes.forEach((note)=>{ %>
+                        <input type="text" name="notes" value="<%= note %>">
+                    <% });
+                } %>
+                <div id="buttons">
+                    <input type="button" id="new-note" value="Add Note" onclick="addNote()">
+                    <button type="submit">Update All Notes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+<%- include("partials/footer.ejs") %>

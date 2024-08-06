@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviwooks</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+   <header>
+    <h1><a href="/">Reviwooks</a></h1>
+    <% if(locals.data){ %>
+        <div class="features">
+            <div class="new-book">
+                <button><a href="/newBook" style="text-decoration: none;">New Book</a></button>
+            </div>
+            <div class="sort">
+                <form id="sort-form" action="/sort" method="post" hidden>
+                    <label for="sort-books">Sort by:</label>
+                    <select name="criteria" id="sort-books" onchange="this.form.submit()" autofocus="true">
+                        <option value="">Please choose a criteria</option>
+                        <option value="rating">Rating</option>
+                        <option value="title">Title</option>
+                    </select>
+                </form>
+                <button id="sort-btn" onclick="sortHandler()">Sort By</button>
+            </div>
+            <div class="filter">
+                <form id="filter-form" action="/filter" method="post" hidden>
+                    <input type="text" id="filter-ip" name="ISBN_id" placeholder="Enter the ISBN number" autofocus="true">
+                    <input type="submit" id="filter-submit" value="Filter">
+                </form>
+                <button id="filter-btn" onclick="filterHandler()">Filter</button>
+                <!-- <a href="/filter">Filter</a> -->
+            </div>
+        </div>
+    <% } %>
+   </header>
